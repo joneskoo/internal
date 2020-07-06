@@ -30,6 +30,14 @@ func TestDosfsck(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	w, err = fw.File("/nested/dir/directory.conf", time.Now())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := w.Write([]byte("nested directories")); err != nil {
+		t.Fatal(err)
+	}
+
 	if err := fw.Flush(); err != nil {
 		t.Fatal(err)
 	}
